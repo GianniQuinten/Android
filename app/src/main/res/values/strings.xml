@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Hirehub Resources</string>
     <string name="title_activity_login">Login</string>
+    <string name="title_activity_register">Register</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="password">password</string>
 </resources>
