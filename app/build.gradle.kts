@@ -7,9 +7,13 @@ plugins {
 }
 
 android {
+
     namespace = "com.example.hirehubresources"
     compileSdk = 34
 
+    buildFeatures{
+        viewBinding = true
+    }
     defaultConfig {
         applicationId = "com.example.hirehubresources"
         minSdk = 24
