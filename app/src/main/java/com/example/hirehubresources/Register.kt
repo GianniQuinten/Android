@@ -1,15 +1,15 @@
 //package com.example.hirehubresources
-//
+
 //import android.os.Bundle
 //import android.text.TextUtils
 //import android.util.Log
 //import android.widget.Toast
-//import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 //import com.example.hirehubresources.databinding.ActivityRegisterBinding
 //import com.google.firebase.auth.FirebaseAuth
 //import com.google.firebase.auth.FirebaseUser
-//
-//class RegisterActivity : AppCompatActivity() {
+
+class RegisterActivity : AppCompatActivity() {
 //    private lateinit var binding: ActivityRegisterBinding
 //    private lateinit var auth: FirebaseAuth
 //
@@ -71,4 +71,4 @@
 //    private fun updateUI(user: FirebaseUser?) {
 //        //  UI updates here if registry is successfull
 //    }
-//}
+}
