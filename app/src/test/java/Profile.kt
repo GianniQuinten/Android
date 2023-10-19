@@ -10,5 +10,5 @@ data class Profile(
     val jobPreference: String,
     val description: String,
 
-// profile_data like contact info
+// profile_data like contact info visibility
 )
