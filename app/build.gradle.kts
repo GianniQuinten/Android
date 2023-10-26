@@ -1,17 +1,10 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    // Add the Google services Gradle plugin
-    id("com.google.gms.google-services")
     id ("kotlin-kapt")
 }
 
 android {
-
-//    tasks.withType(type = KaptGenerateStubsTask::class) {
-//        kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8.toString()
-//
-//    }
 
     namespace = "com.example.hirehubresources"
     compileSdk = 34
@@ -49,15 +42,6 @@ android {
         jvmTarget = "17"
     }
 
-//    java {
-//        toolchain {
-//            languageVersion.set(JavaLanguageVersion.of(8))
-//        }
-//    }
-//
-//    kotlin {
-//        jvmToolchain(8)
-//    }
     buildFeatures {
         compose = true
         viewBinding = true
@@ -83,7 +67,6 @@ dependencies {
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
-    implementation("com.google.firebase:firebase-auth-ktx:22.1.2")
     implementation(platform("androidx.compose:compose-bom:2023.03.00"))
     implementation(platform("androidx.compose:compose-bom:2023.03.00"))
     implementation("androidx.appcompat:appcompat:1.6.1")
@@ -110,13 +93,6 @@ dependencies {
     androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
-
-
-    // Import the Firebase BoM
-    implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
-    // TODO: Add the dependencies for Firebase products you want to use
-    // When using the BoM, don't specify versions in Firebase dependencies
-    implementation("com.google.firebase:firebase-analytics-ktx")
 
     // In de app-level build.gradle file
     implementation ("androidx.room:room-runtime:2.5.2")
