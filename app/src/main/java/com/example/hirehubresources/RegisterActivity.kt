@@ -1,18 +1,19 @@
 package com.example.hirehubresources
 
+
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.example.hirehubresources.databinding.ActivityRegisterBinding
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
+import DatabaseProvider
+
 
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
-    private lateinit var auth: FirebaseAuth
+    private lateinit var userDao: UserDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +21,9 @@ class RegisterActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        auth = FirebaseAuth.getInstance()
+        // Database initialization
+        val database = DatabaseProvider.getDatabase(this)
+        userDao = database.userDao()
 
         // binding setter
         val editTextEmail = binding.email
@@ -47,34 +50,19 @@ class RegisterActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // Create a user using Firebase Authentication
-            auth.createUserWithEmailAndPassword(userEmail, userPassword)
-                .addOnCompleteListener(this) { task ->
-                    progressBar.isVisible = false
-
-                    if (task.isSuccessful) {
-                        // Sign in success, update UI with the signed-in user's information
-                        Toast.makeText(
-                            baseContext,
-                            "You created your account.",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        val user = auth.currentUser
-                        updateUI(user)
-                    } else {
-                        // If sign-in fails, display a message to the user.
-                        Toast.makeText(
-                            baseContext,
-                            "Authentication failed.",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        updateUI(null)
-                    }
-                }
+            // Create a User object and insert it into the database
+            val user = User(email = userEmail, password = userPassword)
+            insertUser(user)
         }
     }
 
-    private fun updateUI(user: FirebaseUser?) {
-        // Implement the logic for updating the user interface here
+    private fun insertUser(user: User) {
+        // Insert the user into the Room database
+        userDao.insert(user)
+
+        // Handle successful registration (update your UI as needed)
+        Toast.makeText(this, "Registration successful.", Toast.LENGTH_SHORT).show()
+        // Update your UI or navigate to another screen
     }
 }
+
