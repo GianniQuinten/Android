@@ -1,13 +1,16 @@
 package com.example.hirehubresources
 
 
+import android.os.Bundle
+import android.text.TextUtils
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-
-
+import androidx.core.view.isVisible
+import com.example.hirehubresources.databinding.ActivityRegisterBinding
 
 
 class RegisterActivity : AppCompatActivity() {
-/*    private lateinit var binding: ActivityRegisterBinding
+    private lateinit var binding: ActivityRegisterBinding
     private lateinit var userDao: UserDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,6 +61,6 @@ class RegisterActivity : AppCompatActivity() {
         // Handle successful registration (update your UI as needed)
         Toast.makeText(this, "Registration successful.", Toast.LENGTH_SHORT).show()
         // Update your UI or navigate to another screen
-    }*/
+    }
 }
 
