@@ -1,6 +1,13 @@
 package com.example.hirehubresources
 
 
+//import User
+//import UserDao
+
+//the references dont work
+import com.example.User
+import com.example.UserDao
+
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
@@ -54,7 +61,7 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    private fun insertUser(user: User) {
+    private suspend fun insertUser(user: User) {
         // Insert the user into the Room database
         userDao.insert(user)
 
