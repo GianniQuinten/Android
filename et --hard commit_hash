@@ -1,0 +1,130 @@
+[33mcommit 23c023ada75a3d0c85774f86f5d5203705834a01[m[33m ([m[1;36mHEAD -> [m[1;32mLogin[m[33m)[m
+Author: giannivanlooij <54837793+giannivanlooij@users.noreply.github.com>
+Date:   Thu Oct 26 11:17:01 2023 +0200
+
+    removed firebase from gradle file
+
+[33mcommit 17a6787cb3076ce74ee6044e8cdcf36d707ae024[m[33m ([m[1;31morigin/Login[m[33m)[m
+Author: giannivanlooij <54837793+giannivanlooij@users.noreply.github.com>
+Date:   Thu Oct 19 13:18:39 2023 +0200
+
+    main activity now has buttons to navigate login and register. lot was wrong because there was a mismatch with the login and register class names. i renamed the file according to the proper code convention
+
+[33mcommit 1ef875eca89e8c89ba3bee0b3d6b99cfce2f4750[m
+Author: giannivanlooij <54837793+giannivanlooij@users.noreply.github.com>
+Date:   Wed Oct 18 14:22:45 2023 +0200
+
+    added message table. the rest of the functionality like visibility should be handled with programming
+
+[33mcommit 8009af5d78e9e80851c5a0b74ce60196d89fc10f[m
+Author: giannivanlooij <54837793+giannivanlooij@users.noreply.github.com>
+Date:   Wed Oct 18 13:00:23 2023 +0200
+
+    added the profile table and took a look if i could find what crashes the program. for now i set main activity on launcher and will look if i can make the login and register respond
+
+[33mcommit ec9045b915222d3e351af4cd5ea8df614a78a9c0[m
+Author: giannivanlooij <54837793+giannivanlooij@users.noreply.github.com>
+Date:   Mon Oct 16 19:13:49 2023 +0200
+
+    added the user related files
+
+[33mcommit a575af4a88fada819fd3942bc71b8c84d6c78406[m
+Author: giannivanlooij <54837793+giannivanlooij@users.noreply.github.com>
+Date:   Thu Oct 12 14:52:55 2023 +0200
+
+    Update build.gradle.kts
+    
+    updated the dependencies. a lot where outdated.
+
+[33mcommit 7231fffae2f9659ab33f2df7713aaca1855ea3eb[m
+Author: giannivanlooij <54837793+giannivanlooij@users.noreply.github.com>
+Date:   Thu Oct 12 14:02:54 2023 +0200
+
+    Update Register.kt
+
+[33mcommit 0b64af3996a2a7ce698ddac945f08001768c269d[m
+Author: giannivanlooij <54837793+giannivanlooij@users.noreply.github.com>
+Date:   Thu Oct 12 12:21:57 2023 +0200
+
+    added the login and register binding logic. but keeps crashing
+
+[33mcommit ca17e733298859e4c55581496c037da5220d8d1e[m
+Author: giannivanlooij <54837793+giannivanlooij@users.noreply.github.com>
+Date:   Wed Oct 11 22:04:38 2023 +0200
+
+    register and login placeholder
+    
+    i fixed version compatibility inside of the app module. i commit this for a develop fix
+
+[33mcommit b6230b64e4c0e7dc08c69243de7b8a36cbd06418[m
+Author: giannivanlooij <54837793+giannivanlooij@users.noreply.github.com>
+Date:   Tue Oct 10 12:49:59 2023 +0200
+
+    login placeholder
+    
+    the login is not styled or functioning yet. android made a change that effects making a view.
+    
+    instead of empty activity select empty view activity. otherwise the layout folder wont be created/updated
+
+[33mcommit 5ca183a1e3c39f98f3a731ea94338e03623d5eea[m
+Author: giannivanlooij <54837793+giannivanlooij@users.noreply.github.com>
+Date:   Tue Oct 10 11:24:24 2023 +0200
+
+    compatibility needed to be lowered otherwise the app could never run
+
+[33mcommit 1ded38cc9939c12b552d3d8f16048a1a6542f7a1[m
+Author: giannivanlooij <54837793+giannivanlooij@users.noreply.github.com>
+Date:   Tue Oct 10 10:42:43 2023 +0200
+
+    added firebase sdk
+
+[33mcommit 719c43255abf2648828069510c635735316bb848[m
+Merge: d69ab5a 64a2b94
+Author: giannivanlooij <54837793+giannivanlooij@users.noreply.github.com>
+Date:   Mon Oct 9 08:59:32 2023 +0200
+
+    Merge pull request #5 from GianniQuinten/room
+    
+    Room functionality
+
+[33mcommit 64a2b94dfe40ebf5e9907deaabdb9562dcd692c4[m[33m ([m[1;32mroom[m[33m)[m
+Author: giannivanlooij <54837793+giannivanlooij@users.noreply.github.com>
+Date:   Wed Oct 4 12:48:36 2023 +0200
+
+    followed the slides but i have no idea how to organise stuff
+
+[33mcommit d5d723f3eaf89e40bc3a1f1db2a582e91ae96b36[m
+Author: giannivanlooij <54837793+giannivanlooij@users.noreply.github.com>
+Date:   Tue Oct 3 14:04:26 2023 +0200
+
+    added a entity class for testing
+
+[33mcommit e1181aeb4ca4f6f1e92f8693cefbeebf4e443875[m
+Author: giannivanlooij <54837793+giannivanlooij@users.noreply.github.com>
+Date:   Tue Oct 3 14:00:27 2023 +0200
+
+    added room configuration to the gradle files (was a pain to figure out)
+
+[33mcommit 9d29582447d24357ea30a0a4a2322273525f4980[m
+Author: giannivanlooij <54837793+giannivanlooij@users.noreply.github.com>
+Date:   Tue Oct 3 13:40:33 2023 +0200
+
+    firebase is setup. only need to establish a connection
+
+[33mcommit d69ab5a29f8c33dec661baa6480a2962c8ed0775[m[33m ([m[1;32mlandingpage[m[33m)[m
+Author: giannivanlooij <54837793+giannivanlooij@users.noreply.github.com>
+Date:   Tue Oct 3 12:22:31 2023 +0200
+
+    develop push
+
+[33mcommit 66e32a820aa336f2d42478ec4bd5c0db1eb4b6ad[m
+Author: giannivanlooij <54837793+giannivanlooij@users.noreply.github.com>
+Date:   Tue Sep 12 10:57:57 2023 +0200
+
+    initial commit
+
+[33mcommit c73454a4ad6dee56be531fb70b032033e458d738[m
+Author: giannivanlooij <54837793+giannivanlooij@users.noreply.github.com>
+Date:   Tue Sep 12 10:54:20 2023 +0200
+
+    Initial commit

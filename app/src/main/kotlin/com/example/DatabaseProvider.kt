@@ -14,7 +14,7 @@ object DatabaseProvider {
         return Room.databaseBuilder(
             context.applicationContext,
             AppDatabase::class.java,
-            "my-database"
+            "HireHubDB"
         ).build()
     }
 }
