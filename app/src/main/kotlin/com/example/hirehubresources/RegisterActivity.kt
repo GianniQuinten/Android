@@ -3,7 +3,6 @@ package com.example.hirehubresources
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.TextUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -54,14 +53,9 @@ class RegisterActivity : AppCompatActivity() {
             }
 
 
-            // registration empty handler
-            if (TextUtils.isEmpty(userEmail)) {
-                Toast.makeText(this, "Enter email", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-
-            if (TextUtils.isEmpty(userPassword)) {
-                Toast.makeText(this, "Enter password", Toast.LENGTH_SHORT).show()
+            // Credential checker
+            if (userEmail.isEmpty() || userPassword.isEmpty()) {
+                Toast.makeText(this, "Both email and password are required", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 

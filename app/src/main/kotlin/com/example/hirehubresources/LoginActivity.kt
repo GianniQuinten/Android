@@ -35,6 +35,7 @@ class LoginActivity : AppCompatActivity() {
 
             // credential checker
             if (userEmail.isEmpty() || userPassword.isEmpty()) {
+                Toast.makeText(this, "Both email and password are required", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
