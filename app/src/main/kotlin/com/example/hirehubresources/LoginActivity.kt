@@ -24,7 +24,7 @@ class LoginActivity : AppCompatActivity() {
         val database = DatabaseProvider.getDatabase(this)
         userDao = database.userDao()
 
-        //  ui elements
+        //  UI elements
         val emailEditText = binding.email
         val passwordEditText = binding.password
         val loginButton = binding.loginBtn
@@ -38,7 +38,18 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // Database check on a background thread. it cant load on a main tread
+            fun isValidEmail(email: String): Boolean {
+                val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
+                return email.matches(emailPattern.toRegex())
+            }
+
+            //email validation
+            if (!isValidEmail(userEmail)) {
+                Toast.makeText(this, "Please use a valid email", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // database check is on a background thread. it cant load on a main tread
             GlobalScope.launch(Dispatchers.IO) {
                 val user = userDao.getUserByEmailAndPassword(userEmail, userPassword)
 

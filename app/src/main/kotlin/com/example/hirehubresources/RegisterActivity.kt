@@ -41,6 +41,19 @@ class RegisterActivity : AppCompatActivity() {
             val userEmail = editTextEmail.text.toString()
             val userPassword = editTextPassword.text.toString()
 
+            // validate email
+            fun isValidEmail(email: String): Boolean {
+                val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
+                return email.matches(emailPattern.toRegex())
+            }
+
+            // validate the email format
+            if (!isValidEmail(userEmail)) {
+                Toast.makeText(this, "Please use a valid email", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+
             // registration empty handler
             if (TextUtils.isEmpty(userEmail)) {
                 Toast.makeText(this, "Enter email", Toast.LENGTH_SHORT).show()
