@@ -20,4 +20,5 @@
     <!-- register button on register page -->
     <string name="Register_btn">Register</string>
     <string name="Register">Register\n</string>
+    <string name="title_activity_dashboard" />
 </resources>

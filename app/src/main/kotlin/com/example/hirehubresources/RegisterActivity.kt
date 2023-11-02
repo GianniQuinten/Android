@@ -55,13 +55,13 @@ class RegisterActivity : AppCompatActivity() {
             // launch a coroutine to insert the user into the room database
             CoroutineScope(Dispatchers.IO).launch {
                 val user = User(
-                    userType = "Customer",
+                    userType = "User",
                     email = userEmail,
                     password = userPassword
                 )
                 userDao.insert(user)
 
-                // handle successful registration
+                // handles successful registration
                 runOnUiThread {
                     Toast.makeText(this@RegisterActivity, "Registration successful.", Toast.LENGTH_SHORT).show()
 

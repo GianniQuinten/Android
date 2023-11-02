@@ -1,35 +1,58 @@
 package com.example.hirehubresources
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.google.android.material.textfield.TextInputEditText
-//import kotlinx.android.synthetic.main.activity_login.*
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.hirehubresources.databinding.ActivityLoginBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
+    private lateinit var userDao: UserDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         val view = binding.root
-        setContentView(R.layout.activity_login)
+        setContentView(view)
 
-        // references the string in the layout xml
-        binding.email.hint = getString(R.string.email)
-        binding.password.hint = getString(R.string.password)
+        // initialises the database
+        val database = DatabaseProvider.getDatabase(this)
+        userDao = database.userDao()
 
-        binding.loginBtn.setOnClickListener {
-            // Get user input
-            val userEmail = binding.email.text.toString()
-            val userPassword = binding.password.text.toString()
+        //  ui elements
+        val emailEditText = binding.email
+        val passwordEditText = binding.password
+        val loginButton = binding.loginBtn
 
-            // Add your login logic here (e.g., authentication)
+        loginButton.setOnClickListener {
+            val userEmail = emailEditText.text.toString()
+            val userPassword = passwordEditText.text.toString()
 
-            // If login is successful, go to the next Activity (for now main but should be something else
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            // credential checker
+            if (userEmail.isEmpty() || userPassword.isEmpty()) {
+                return@setOnClickListener
+            }
+
+            // Database check on a background thread. it cant load on a main tread
+            GlobalScope.launch(Dispatchers.IO) {
+                val user = userDao.getUserByEmailAndPassword(userEmail, userPassword)
+
+                launch(Dispatchers.Main) {
+                    if (user != null) {
+                        // Successful login
+                        val intent = Intent(this@LoginActivity, DashboardActivity::class.java)
+                        startActivity(intent)
+                    } else {
+                        Toast.makeText(this@LoginActivity, "Login invalid.", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                }
+            }
         }
     }
 }
