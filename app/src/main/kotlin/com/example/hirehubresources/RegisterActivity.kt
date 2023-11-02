@@ -59,25 +59,37 @@ class RegisterActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // launch a coroutine to insert the user into the room database
+            // checks if email exists or not and inserts the user if the email is not in use
             CoroutineScope(Dispatchers.IO).launch {
-                val user = User(
-                    userType = "User",
-                    email = userEmail,
-                    password = userPassword
-                )
-                userDao.insert(user)
+                val emailCount = userDao.isEmailInUse(userEmail)
 
-                // handles successful registration
-                runOnUiThread {
-                    Toast.makeText(this@RegisterActivity, "Registration successful.", Toast.LENGTH_SHORT).show()
+                if (emailCount > 0) {
+                    runOnUiThread {
+                        // the loadbar keeps loading so i hid it
+                        progressBar.isVisible = false
+                        Toast.makeText(this@RegisterActivity, "This email is already in use", Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    // Proceed with registration
+                    val user = User(
+                        userType = "User",
+                        email = userEmail,
+                        password = userPassword
+                    )
+                    userDao.insert(user)
 
-                    // load a new page
-                    val intent = Intent(this@RegisterActivity, MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
+                    // handles successful registration
+                    runOnUiThread {
+                        Toast.makeText(this@RegisterActivity, "Registration successful.", Toast.LENGTH_SHORT).show()
+
+                        // load a new page
+                        val intent = Intent(this@RegisterActivity, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    }
                 }
             }
+
         }
     }
 }
