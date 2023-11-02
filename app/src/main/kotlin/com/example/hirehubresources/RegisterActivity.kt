@@ -1,19 +1,17 @@
 package com.example.hirehubresources
 
 
-//import User
-//import UserDao
-
-//the references dont work
-import com.example.User
-import com.example.UserDao
-
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.example.hirehubresources.databinding.ActivityRegisterBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+
 
 
 class RegisterActivity : AppCompatActivity() {
@@ -26,7 +24,7 @@ class RegisterActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        // Database initialization
+        // database initialization
         val database = DatabaseProvider.getDatabase(this)
         userDao = database.userDao()
 
@@ -36,15 +34,14 @@ class RegisterActivity : AppCompatActivity() {
         val buttonReg = binding.registerBtn
         val progressBar = binding.progressBar
 
-        // register button functionality
         buttonReg.setOnClickListener {
             progressBar.isVisible = true
 
-            // Get user input
+            // get user input
             val userEmail = editTextEmail.text.toString()
             val userPassword = editTextPassword.text.toString()
 
-            // Registration empty handler
+            // registration empty handler
             if (TextUtils.isEmpty(userEmail)) {
                 Toast.makeText(this, "Enter email", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
@@ -55,19 +52,25 @@ class RegisterActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            // Create a User object and insert it into the database
-            val user = User(email = userEmail, password = userPassword)
-            insertUser(user)
+            // launch a coroutine to insert the user into the room database
+            CoroutineScope(Dispatchers.IO).launch {
+                val user = User(
+                    userType = "Customer",
+                    email = userEmail,
+                    password = userPassword
+                )
+                userDao.insert(user)
+
+                // handle successful registration
+                runOnUiThread {
+                    Toast.makeText(this@RegisterActivity, "Registration successful.", Toast.LENGTH_SHORT).show()
+
+                    // load a new page
+                    val intent = Intent(this@RegisterActivity, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+            }
         }
     }
-
-    private suspend fun insertUser(user: User) {
-        // Insert the user into the Room database
-        userDao.insert(user)
-
-        // Handle successful registration (update your UI as needed)
-        Toast.makeText(this, "Registration successful.", Toast.LENGTH_SHORT).show()
-        // Update your UI or navigate to another screen
-    }
 }
-

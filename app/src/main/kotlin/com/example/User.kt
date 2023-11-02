@@ -1,3 +1,4 @@
+package com.example.hirehubresources
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -6,8 +7,6 @@ import androidx.room.PrimaryKey
 data class User(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val userType: String,
-    val name: String,
-    val lastName: String,
     val email: String,
     val password: String,
 

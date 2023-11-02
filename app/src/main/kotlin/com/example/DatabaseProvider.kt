@@ -1,3 +1,4 @@
+package com.example.hirehubresources
 import android.content.Context
 import androidx.room.Room
 

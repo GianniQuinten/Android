@@ -1,3 +1,5 @@
+package com.example.hirehubresources
+
 import androidx.room.Database
 import androidx.room.RoomDatabase
 

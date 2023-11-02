@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id ("kotlin-kapt")
+    id("com.google.devtools.ksp").version("1.7.20-1.0.6")
 }
 
 android {
@@ -94,8 +95,9 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
-    // In de app-level build.gradle file
-    implementation ("androidx.room:room-ktx:2.4.0")
+    // room
+    implementation ("androidx.room:room-ktx:2.6.0")
+    kapt ("androidx.room:room-compiler:2.6.0")
 
 
 
