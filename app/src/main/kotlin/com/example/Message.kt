@@ -1,3 +1,4 @@
+package com.example.hirehubresources
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 

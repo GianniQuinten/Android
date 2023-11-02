@@ -1,13 +1,20 @@
 package com.example.hirehubresources
 
 
+import android.content.Intent
+import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-
+import androidx.core.view.isVisible
+import com.example.hirehubresources.databinding.ActivityRegisterBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 
 class RegisterActivity : AppCompatActivity() {
-/*    private lateinit var binding: ActivityRegisterBinding
+    private lateinit var binding: ActivityRegisterBinding
     private lateinit var userDao: UserDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,7 +23,7 @@ class RegisterActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        // Database initialization
+        // database initialization
         val database = DatabaseProvider.getDatabase(this)
         userDao = database.userDao()
 
@@ -26,38 +33,51 @@ class RegisterActivity : AppCompatActivity() {
         val buttonReg = binding.registerBtn
         val progressBar = binding.progressBar
 
-        // register button functionality
         buttonReg.setOnClickListener {
             progressBar.isVisible = true
 
-            // Get user input
+            // get user input
             val userEmail = editTextEmail.text.toString()
             val userPassword = editTextPassword.text.toString()
 
-            // Registration empty handler
-            if (TextUtils.isEmpty(userEmail)) {
-                Toast.makeText(this, "Enter email", Toast.LENGTH_SHORT).show()
+            // validate email
+            fun isValidEmail(email: String): Boolean {
+                val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"
+                return email.matches(emailPattern.toRegex())
+            }
+
+            // validate the email format
+            if (!isValidEmail(userEmail)) {
+                Toast.makeText(this, "Please use a valid email", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            if (TextUtils.isEmpty(userPassword)) {
-                Toast.makeText(this, "Enter password", Toast.LENGTH_SHORT).show()
+
+            // Credential checker
+            if (userEmail.isEmpty() || userPassword.isEmpty()) {
+                Toast.makeText(this, "Both email and password are required", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            // Create a User object and insert it into the database
-            val user = User(email = userEmail, password = userPassword)
-            insertUser(user)
+            // launch a coroutine to insert the user into the room database
+            CoroutineScope(Dispatchers.IO).launch {
+                val user = User(
+                    userType = "User",
+                    email = userEmail,
+                    password = userPassword
+                )
+                userDao.insert(user)
+
+                // handles successful registration
+                runOnUiThread {
+                    Toast.makeText(this@RegisterActivity, "Registration successful.", Toast.LENGTH_SHORT).show()
+
+                    // load a new page
+                    val intent = Intent(this@RegisterActivity, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+            }
         }
     }
-
-    private fun insertUser(user: User) {
-        // Insert the user into the Room database
-        userDao.insert(user)
-
-        // Handle successful registration (update your UI as needed)
-        Toast.makeText(this, "Registration successful.", Toast.LENGTH_SHORT).show()
-        // Update your UI or navigate to another screen
-    }*/
 }
-

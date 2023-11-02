@@ -1,14 +1,14 @@
-
+package com.example.hirehubresources
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
-import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 
 @Dao
 interface UserDao {
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+//    (onConflict = OnConflictStrategy.IGNORE)
+    @Insert
     suspend fun insert(user: User)
 
     @Update
@@ -25,4 +25,7 @@ interface UserDao {
 
     @Query("SELECT * FROM users WHERE email = :email")
     suspend fun getUserByEmail(email: String): User?
+    @Query("SELECT * FROM Users WHERE email = :email AND password = :password")
+    fun getUserByEmailAndPassword(email: String, password: String): User?
+
 }

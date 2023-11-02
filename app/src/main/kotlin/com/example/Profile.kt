@@ -1,3 +1,4 @@
+package com.example.hirehubresources
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -6,6 +7,8 @@ import androidx.room.PrimaryKey
 data class Profile(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val userId: Long, // Foreign key
+    val name: String,
+    val lastName: String,
     val userType: String,
     val jobPreference: String,
     val description: String,
